@@ -194,7 +194,7 @@ export default class SectionsContainer extends React.Component {
         this._handleSectionTransition(activeSection);
         this._addActiveClass();
     }
-    
+
     _handleTouchNav() {
     var that = this;
 
@@ -211,7 +211,7 @@ export default class SectionsContainer extends React.Component {
     elapsedTime,
     startTime,
     handleswipe = function(swipedir){console.log(swipedir);}
-  
+
     touchsurface.addEventListener('touchstart', function(e){
         var touchobj = e.changedTouches[0]
         swipedir = 'none'
@@ -221,11 +221,11 @@ export default class SectionsContainer extends React.Component {
         startTime = new Date().getTime() // record time when finger first makes contact with surface
         // e.preventDefault()
     }, false)
-  
+
     touchsurface.addEventListener('touchmove', function(e){
         e.preventDefault() // prevent scrolling when inside DIV
     }, false)
-  
+
     touchsurface.addEventListener('touchend', function(e){
         var touchobj = e.changedTouches[0]
         distX = touchobj.pageX - startX // get horizontal dist traveled by finger while in contact with surface
@@ -260,9 +260,15 @@ export default class SectionsContainer extends React.Component {
     }
 
     _setAnchor(index) {
-        const hash = this.props.anchors[index];
+        const anchors = this.props.anchors;
 
-        if (!this.props.anchors.length || hash) {
+        if (anchors.length <= 0) {
+            return false;
+        }
+
+        const hash = anchors[index];
+
+        if (!anchors.length || hash) {
             window.location.hash = '#' + hash;
         }
     }
